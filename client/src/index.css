@@ -1,0 +1,157 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+    @apply font-sans text-slate-800 antialiased;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  #root {
+    min-height: 100vh;
+    background-image: radial-gradient(ellipse at 10% 0%, rgba(99,102,241,0.1) 0%, transparent 50%),
+                      radial-gradient(ellipse at 90% 100%, rgba(6,182,212,0.08) 0%, transparent 50%),
+                      linear-gradient(160deg, #eef2ff 0%, #f0fdf4 50%, #eff6ff 100%);
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { @apply bg-slate-100; }
+  ::-webkit-scrollbar-thumb { @apply bg-slate-300 rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-slate-400; }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button { opacity: 1; }
+}
+
+@layer components {
+  /* ── Card ── */
+  .card {
+    @apply bg-white border border-slate-200 rounded-2xl p-6 shadow-card transition-shadow duration-200;
+  }
+  .card:hover { @apply shadow-card-hover; }
+  .card-sm { @apply bg-white border border-slate-200 rounded-xl p-4 shadow-card; }
+
+  /* ── Buttons ── */
+  .btn {
+    @apply inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-xl text-sm font-semibold cursor-pointer border-none transition-all duration-150 no-underline;
+  }
+  .btn-primary {
+    @apply bg-gradient-to-r from-violet-600 to-indigo-500 text-white shadow-btn;
+  }
+  .btn-primary:hover { @apply opacity-90 -translate-y-px; }
+
+  .btn-secondary {
+    @apply bg-white border border-slate-200 text-slate-700 shadow-sm;
+  }
+  .btn-secondary:hover { @apply border-violet-300 text-violet-700 bg-violet-50; }
+
+  .btn-success {
+    @apply bg-gradient-to-r from-emerald-600 to-green-500 text-white shadow-sm;
+  }
+  .btn-success:hover { @apply opacity-90; }
+
+  .btn-danger {
+    @apply bg-red-50 border border-red-200 text-red-600;
+  }
+  .btn-danger:hover { @apply bg-red-100; }
+
+  .btn-sm { @apply px-3.5 py-1.5 text-xs rounded-lg; }
+  .btn-lg { @apply px-7 py-3.5 text-base rounded-2xl; }
+
+  /* ── Form ── */
+  .form-input, .form-select, .form-textarea {
+    @apply w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 font-[inherit] transition-all duration-150;
+  }
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    @apply outline-none border-violet-400 bg-white ring-2 ring-violet-100;
+  }
+  .form-select option { @apply bg-white text-slate-800; }
+  .form-textarea { @apply resize-y min-h-[80px]; }
+
+  /* ── Labels ── */
+  .form-label { @apply text-xs font-semibold text-slate-500 mb-1.5; }
+  .section-label { @apply text-xs font-bold uppercase tracking-widest text-slate-400 mb-3; }
+  .page-title { @apply text-2xl font-extrabold text-slate-900 flex items-center gap-2.5 mb-1; }
+  .page-subtitle { @apply text-sm text-slate-500; }
+  .page-header { @apply mb-7; }
+
+  /* ── Progress bar ── */
+  .progress-wrap { @apply bg-slate-200 rounded-full h-2 overflow-hidden; }
+  .progress-fill { @apply h-full rounded-full transition-all duration-500; }
+
+  /* ── Weekly table ── */
+  .weekly-table { @apply w-full border-collapse text-sm; }
+  .weekly-table th, .weekly-table td { @apply px-4 py-3 text-center border-b border-slate-100 whitespace-nowrap; }
+  .weekly-table th { @apply text-xs font-bold text-slate-400 uppercase tracking-wider bg-slate-50/80; }
+  .weekly-table td:first-child, .weekly-table th:first-child { @apply text-left font-semibold text-slate-700; }
+  .weekly-table tr:hover td { @apply bg-violet-50/40; }
+
+  .check-btn {
+    @apply w-8 h-8 rounded-lg border-2 border-slate-200 bg-white cursor-pointer inline-flex items-center justify-center text-white transition-all duration-150 mx-auto;
+  }
+  .check-btn.checked { @apply bg-emerald-500 border-emerald-500; }
+  .check-btn:hover:not(.checked) { @apply border-violet-400 bg-violet-50; }
+
+  /* ── Timeline ── */
+  .timeline { @apply relative pl-8; }
+  .timeline::before {
+    content: '';
+    @apply absolute left-[10px] top-0 bottom-0 w-0.5 rounded-full;
+    background: linear-gradient(to bottom, #7c3aed, #c4b5fd);
+  }
+  .timeline-item { @apply relative mb-5; }
+  .timeline-dot {
+    @apply absolute rounded-full border-2 bg-white;
+    left: -26px; top: 14px;
+  }
+
+  /* ── Alerts ── */
+  .alert { @apply px-4 py-3.5 rounded-xl text-sm border mb-4 font-[inherit]; }
+  .alert-warning { @apply bg-amber-50 border-amber-200 text-amber-800; }
+  .alert-info    { @apply bg-sky-50 border-sky-200 text-sky-800; }
+  .alert-success { @apply bg-emerald-50 border-emerald-200 text-emerald-800; }
+
+  /* ── Tabs ── */
+  .tabs { @apply flex gap-1 bg-slate-100 p-1 rounded-xl w-fit border border-slate-200 mb-6; }
+  .tab-btn { @apply px-5 py-2 rounded-lg text-sm font-semibold text-slate-500 bg-transparent border-none cursor-pointer transition-all duration-150 font-[inherit]; }
+  .tab-btn.active { @apply bg-white text-violet-700 shadow-sm; }
+  .tab-btn:hover:not(.active) { @apply text-violet-600 bg-white/50; }
+
+  /* ── Mood buttons ── */
+  .mood-btn { @apply px-4 py-2 rounded-full border-2 border-slate-200 bg-white cursor-pointer text-sm font-medium text-slate-500 transition-all duration-150 font-[inherit]; }
+  .mood-btn:hover { @apply border-violet-300 text-violet-600 bg-violet-50; }
+  .mood-btn.selected { @apply text-white border-transparent; }
+
+  /* ── Session item ── */
+  .session-item { @apply flex items-center gap-3.5 px-4 py-3.5 bg-white border border-slate-200 rounded-xl shadow-sm; }
+
+  /* ── Stat card ── */
+  .stat-card { @apply bg-white border border-slate-200 rounded-2xl p-5 flex items-center gap-4 shadow-card transition-all duration-200; }
+  .stat-card:hover { @apply shadow-card-hover -translate-y-0.5; }
+  .stat-icon { @apply w-12 h-12 rounded-2xl flex items-center justify-center text-xl flex-shrink-0; }
+
+  /* ── Timer ── */
+  .timer-display {
+    @apply text-center text-5xl font-black my-5 tabular-nums tracking-wide;
+    background: linear-gradient(135deg, #7c3aed, #6366f1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .timer-controls { @apply flex gap-2.5 justify-center; }
+
+  /* ── Empty state ── */
+  .empty-state { @apply text-center py-12 px-6 text-slate-400; }
+  .empty-state-icon { @apply text-5xl mb-3; }
+  .empty-state-text { @apply text-sm; }
+
+  /* ── Subject hours input ── */
+  .hours-input {
+    @apply w-16 text-center bg-slate-50 border border-slate-200 rounded-lg px-2 py-1.5 text-sm text-slate-700 font-[inherit] transition-all duration-150;
+  }
+  .hours-input:focus { @apply outline-none border-violet-400 ring-2 ring-violet-100; }
+}
