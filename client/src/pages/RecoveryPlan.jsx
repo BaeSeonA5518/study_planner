@@ -135,6 +135,76 @@ export default function RecoveryPlan() {
           이 3개 중 <strong>1개라도 개선</strong>되면 정상 진행 중이야. 자신감 가져!
         </div>
       </div>
+
+      {/* 멘탈 유지법 */}
+      <div className="card mt-5 bg-gradient-to-br from-violet-50 to-indigo-50 border-violet-200">
+        <h3 className="font-bold text-slate-800 mb-1">🧠 멘탈 흔들릴 때 (실전 대응)</h3>
+        <p className="text-xs text-slate-400 mb-4">이런 생각 드는 거 정상이야. 대응법만 기억하면 됨.</p>
+
+        <div className="bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 mb-4">
+          <div className="text-xs font-bold text-amber-500 uppercase tracking-wider mb-2">이런 생각 들 때</div>
+          <div className="flex flex-wrap gap-2">
+            {['"이거 해서 붙을 수 있나?"','"너무 늦은 거 아닌가?"','"남들은 더 많이 했을텐데"'].map(t => (
+              <span key={t} className="text-xs font-medium bg-white border border-amber-200 text-amber-700 px-3 py-1.5 rounded-full">{t}</span>
+            ))}
+          </div>
+          <div className="text-xs text-amber-600 font-bold mt-2">→ 전부 정상이다. 이 생각 없는 사람이 이상한 거야.</div>
+        </div>
+
+        <div className="flex flex-col gap-3">
+          {[
+            {
+              n:'1', title:'생각 끊고 행동',
+              desc:'컴일 1강 + 정보보호 1강. 이거만 하고 끝내도 오늘 성공',
+              bg:'bg-violet-50', border:'border-violet-200', tc:'text-violet-700',
+            },
+            {
+              n:'2', title:'비교 금지',
+              desc:'너는 "지금 시작한 기준"으로 싸움 중. 남과 비교하면 무조건 무너짐',
+              bg:'bg-cyan-50', border:'border-cyan-200', tc:'text-cyan-700',
+            },
+            {
+              n:'3', title:'점수 말고 반복 체크',
+              desc:'❌ "오늘 몇 점 나왔지?" → ✅ "오늘 공부 했냐 안 했냐" 이것만 봐',
+              bg:'bg-emerald-50', border:'border-emerald-200', tc:'text-emerald-700',
+            },
+          ].map(r => (
+            <div key={r.n} className={`${r.bg} border ${r.border} rounded-xl flex gap-3 px-4 py-3.5`}>
+              <div className={`w-7 h-7 rounded-full bg-white border ${r.border} flex items-center justify-center font-extrabold text-sm ${r.tc} flex-shrink-0 mt-0.5`}>{r.n}</div>
+              <div>
+                <div className={`font-bold text-[14px] ${r.tc}`}>{r.title}</div>
+                <div className="text-xs text-slate-600 mt-0.5 leading-relaxed">{r.desc}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* 하루 체크 시스템 */}
+      <div className="card mt-4">
+        <h3 className="font-bold text-slate-800 mb-4">✅ 현실 유지 시스템 (간단하게)</h3>
+        <div className="grid grid-cols-2 gap-4 max-sm:grid-cols-1">
+          <div className="bg-slate-50 border border-slate-200 rounded-xl p-4">
+            <div className="font-bold text-slate-700 mb-3 text-sm">하루 체크 (이 2개만)</div>
+            <div className="flex flex-col gap-2">
+              {['💻 컴일 했냐? ⭕ / ❌','🔐 정보보호 했냐? ⭕ / ❌'].map(c => (
+                <div key={c} className="bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm font-medium text-slate-600">{c}</div>
+              ))}
+            </div>
+          </div>
+          <div className="bg-violet-50 border border-violet-200 rounded-xl p-4">
+            <div className="font-bold text-violet-700 mb-3 text-sm">일주일 기준</div>
+            <div className="text-2xl font-extrabold text-violet-700 mb-1">7일 중 5일 이상</div>
+            <div className="text-xs text-violet-500">이 기준만 넘기면 정상 루트</div>
+            <div className="progress-wrap mt-2">
+              <div className="progress-fill bg-violet-500" style={{width:'72%'}} />
+            </div>
+          </div>
+        </div>
+        <div className="mt-4 bg-violet-600 text-white rounded-xl px-4 py-3 text-center font-extrabold">
+          "잘하는 날 필요 없다, 안 하는 날만 없으면 된다" 🔥
+        </div>
+      </div>
     </div>
   );
 }
