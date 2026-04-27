@@ -175,20 +175,24 @@ export default function DailyRoutine() {
 
       {/* 권장 루틴 */}
       <div className="card mt-4">
-        <h3 className="font-bold text-slate-800 mb-4">📋 오늘 권장 루틴 (기준: 5~7시간)</h3>
-        <div className="grid grid-cols-5 gap-2.5 max-lg:grid-cols-3 max-sm:grid-cols-2">
+        <h3 className="font-bold text-slate-800 mb-1">📋 현재 구간 권장 루틴</h3>
+        <p className="text-xs text-slate-400 mb-4">구간별로 자동으로 바뀌어요</p>
+        <div className="grid grid-cols-2 gap-2.5 max-sm:grid-cols-1">
           {[
-            { time:'09:00~12:00', label:'컴일 인강 + 문제',    bg:'bg-violet-50',  tc:'text-violet-600',  bc:'border-violet-200' },
-            { time:'13:00~14:30', label:'정보보호 인강 + 복습',bg:'bg-cyan-50',    tc:'text-cyan-600',    bc:'border-cyan-200'   },
-            { time:'16:30~18:00', label:'국어 독해 + 문법',    bg:'bg-emerald-50', tc:'text-emerald-600', bc:'border-emerald-200'},
-            { time:'19:30~21:00', label:'기출 문제풀이',        bg:'bg-amber-50',   tc:'text-amber-600',   bc:'border-amber-200'  },
-            { time:'자기 전',     label:'정보보호 암기 10분',  bg:'bg-pink-50',    tc:'text-pink-600',    bc:'border-pink-200'   },
+            { time:'저녁 19:00~20:00', label:'💻 컴일 인강 1~2강',    bg:'bg-violet-50',  tc:'text-violet-600',  bc:'border-violet-200', tip:'핵심 이해 70%면 넘어가기' },
+            { time:'저녁 20:00~20:40', label:'🔐 정보보호 인강 1강',   bg:'bg-cyan-50',    tc:'text-cyan-600',    bc:'border-cyan-200',   tip:'다음날 10분 복습 필수' },
+            { time:'저녁 20:40~21:00', label:'📖 국어 독해 2~3지문',   bg:'bg-emerald-50', tc:'text-emerald-600', bc:'border-emerald-200', tip:'시간 재고 풀기' },
+            { time:'자기 전 10분',     label:'🔐 정보보호 암기 복습',  bg:'bg-pink-50',    tc:'text-pink-600',    bc:'border-pink-200',   tip:'안 하면 다 까먹음' },
           ].map(r => (
-            <div key={r.time} className={`${r.bg} border ${r.bc} rounded-xl p-3`}>
+            <div key={r.time} className={`${r.bg} border ${r.bc} rounded-xl p-3.5`}>
               <div className={`text-[10px] font-bold ${r.tc} mb-1`}>{r.time}</div>
-              <div className="text-[13px] font-semibold text-slate-700">{r.label}</div>
+              <div className="text-[13.5px] font-semibold text-slate-700 mb-0.5">{r.label}</div>
+              <div className="text-[11px] text-slate-400">{r.tip}</div>
             </div>
           ))}
+        </div>
+        <div className="mt-3 bg-amber-50 border border-amber-200 rounded-xl px-4 py-2.5 text-[13px] text-amber-700 font-medium">
+          💡 <strong>"많이 하는 날"보다 "안 끊기는 날"이 합격 만든다.</strong> 오늘 1~2시간만 해도 충분!
         </div>
       </div>
     </div>
