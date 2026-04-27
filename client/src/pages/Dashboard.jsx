@@ -173,7 +173,18 @@ export default function Dashboard() {
 
       {/* 집중 포인트 */}
       <div className="card mb-5">
-        <h3 className="font-bold text-slate-800 mb-4">{phase.emoji} {phase.name} — 집중 포인트</h3>
+        <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
+          <h3 className="font-bold text-slate-800">{phase.emoji} {phase.name} — 집중 포인트</h3>
+          {phase.lectures && (
+            <div className="flex gap-2">
+              {Object.entries(phase.lectures).map(([sub, val]) => (
+                <span key={sub} className="text-xs font-bold px-3 py-1 rounded-full bg-violet-100 text-violet-700">
+                  {sub === '컴일' ? '💻' : '🔐'} {sub} {val}{typeof val === 'number' ? '강' : ''}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
         <div className="grid grid-cols-3 gap-5 max-md:grid-cols-1">
           <div>
             <p className="section-label">하루 목표</p>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { getStudyLogs, upsertStudyLog, getMood, setMood } from '../api';
-import { today, SUBJECTS } from '../utils/dates';
+import { today, SUBJECTS, getCurrentPhase } from '../utils/dates';
 
 const MOODS = [
   { id:'좋음',   emoji:'😄', bg:'bg-emerald-500', border:'border-emerald-500' },
@@ -70,6 +70,7 @@ export default function DailyRoutine() {
   const doneCount  = SUBJECTS.filter(s => logs[s.id]?.completed).length;
   const totalHours = SUBJECTS.reduce((sum, s) => sum + parseFloat(logs[s.id]?.study_hours||0), 0);
   const pct        = Math.round((doneCount / SUBJECTS.length) * 100);
+  const phase      = getCurrentPhase();
 
   return (
     <div className="max-w-6xl mx-auto">
@@ -174,25 +175,75 @@ export default function DailyRoutine() {
       )}
 
       {/* 권장 루틴 */}
+      {/* 현재 구간 진도 루틴 */}
       <div className="card mt-4">
-        <h3 className="font-bold text-slate-800 mb-1">📋 현재 구간 권장 루틴</h3>
-        <p className="text-xs text-slate-400 mb-4">구간별로 자동으로 바뀌어요</p>
-        <div className="grid grid-cols-2 gap-2.5 max-sm:grid-cols-1">
+        <div className="flex items-center justify-between mb-1">
+          <h3 className="font-bold text-slate-800">
+            {phase.emoji} {phase.name} 진도 루틴
+          </h3>
+          <span className="text-xs text-slate-400 bg-slate-100 px-2.5 py-1 rounded-full font-medium">{phase.hours}</span>
+        </div>
+        <p className="text-xs text-slate-400 mb-4">📅 {phase.start} ~ {phase.end}</p>
+
+        {/* 하루 목표 강수 */}
+        <div className="grid grid-cols-2 gap-2.5 mb-4 max-sm:grid-cols-1">
+          {phase.daily.map((d, i) => {
+            const colors = [
+              { bg:'bg-violet-50', tc:'text-violet-600', bc:'border-violet-200' },
+              { bg:'bg-cyan-50',   tc:'text-cyan-600',   bc:'border-cyan-200'   },
+              { bg:'bg-emerald-50',tc:'text-emerald-600',bc:'border-emerald-200'},
+              { bg:'bg-amber-50',  tc:'text-amber-600',  bc:'border-amber-200'  },
+            ];
+            const c = colors[i % colors.length];
+            return (
+              <div key={i} className={`${c.bg} border ${c.bc} rounded-xl px-4 py-3`}>
+                <div className="text-[13.5px] font-semibold text-slate-700">{d}</div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* 핵심 운영 규칙 */}
+        <div className="bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 mb-3">
+          <div className="text-[11px] font-bold text-amber-500 uppercase tracking-wider mb-1">⚡ 오늘의 규칙</div>
+          <div className="text-[13px] font-semibold text-amber-800">{phase.rule || phase.tip}</div>
+        </div>
+
+        {/* 기출 병행 규칙 강조 */}
+        {(phase.id === 2 || phase.id === 3) && (
+          <div className="bg-red-50 border border-red-200 rounded-xl px-4 py-3">
+            <div className="text-[11px] font-bold text-red-400 uppercase tracking-wider mb-1">🔥 기출 병행 필수</div>
+            <div className="flex gap-4 text-[13px] font-semibold text-red-700">
+              <span>💻 컴일: 그날 범위 기출 5~10문제</span>
+              <span>🔐 정보보호: 기출 5문제</span>
+            </div>
+            <div className="text-[11px] text-red-400 mt-1">인강만 듣고 끝내면 시험장에서 아무것도 안 떠오름!</div>
+          </div>
+        )}
+      </div>
+
+      {/* 운영 규칙 3개 */}
+      <div className="card mt-4 bg-gradient-to-br from-slate-50 to-violet-50 border-violet-200">
+        <h3 className="font-bold text-slate-800 mb-3">💣 절대 운영 규칙 3개</h3>
+        <div className="flex flex-col gap-2">
           {[
-            { time:'저녁 19:00~20:00', label:'💻 컴일 인강 1~2강',    bg:'bg-violet-50',  tc:'text-violet-600',  bc:'border-violet-200', tip:'핵심 이해 70%면 넘어가기' },
-            { time:'저녁 20:00~20:40', label:'🔐 정보보호 인강 1강',   bg:'bg-cyan-50',    tc:'text-cyan-600',    bc:'border-cyan-200',   tip:'다음날 10분 복습 필수' },
-            { time:'저녁 20:40~21:00', label:'📖 국어 독해 2~3지문',   bg:'bg-emerald-50', tc:'text-emerald-600', bc:'border-emerald-200', tip:'시간 재고 풀기' },
-            { time:'자기 전 10분',     label:'🔐 정보보호 암기 복습',  bg:'bg-pink-50',    tc:'text-pink-600',    bc:'border-pink-200',   tip:'안 하면 다 까먹음' },
+            { num:'1', rule:'강의 밀리면 줄이지 말고 쌓기', desc:'다음날 +1강 추가. 줄이는 순간 진도 망함', color:'text-violet-700', bg:'bg-violet-50', border:'border-violet-200' },
+            { num:'2', rule:'이해 안 돼도 진도 우선',       desc:'2회독 때 이해됨. 완벽주의 버리기',         color:'text-cyan-700',   bg:'bg-cyan-50',   border:'border-cyan-200'   },
+            { num:'3', rule:'기출 무조건 병행',               desc:'하루 5문제라도. 이거 안 하면 인강 의미 없음', color:'text-amber-700', bg:'bg-amber-50',  border:'border-amber-200'  },
           ].map(r => (
-            <div key={r.time} className={`${r.bg} border ${r.bc} rounded-xl p-3.5`}>
-              <div className={`text-[10px] font-bold ${r.tc} mb-1`}>{r.time}</div>
-              <div className="text-[13.5px] font-semibold text-slate-700 mb-0.5">{r.label}</div>
-              <div className="text-[11px] text-slate-400">{r.tip}</div>
+            <div key={r.num} className={`flex items-start gap-3 ${r.bg} border ${r.border} rounded-xl px-4 py-3`}>
+              <div className={`w-6 h-6 rounded-full bg-white border ${r.border} flex items-center justify-center text-xs font-extrabold ${r.color} flex-shrink-0 mt-0.5`}>
+                {r.num}
+              </div>
+              <div>
+                <div className={`font-bold text-[13.5px] ${r.color}`}>{r.rule}</div>
+                <div className="text-[12px] text-slate-500 mt-0.5">{r.desc}</div>
+              </div>
             </div>
           ))}
         </div>
-        <div className="mt-3 bg-amber-50 border border-amber-200 rounded-xl px-4 py-2.5 text-[13px] text-amber-700 font-medium">
-          💡 <strong>"많이 하는 날"보다 "안 끊기는 날"이 합격 만든다.</strong> 오늘 1~2시간만 해도 충분!
+        <div className="mt-3 text-center text-[13px] font-bold text-violet-700 bg-violet-100 rounded-xl py-2.5">
+          "하루 강의 수를 지키는 게 실력보다 중요하다" 🎯
         </div>
       </div>
     </div>
