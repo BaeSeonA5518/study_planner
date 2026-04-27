@@ -78,6 +78,38 @@ const COMP_ORDER = [
    why:'시간 남으면. 억지로 안 봐도 됨'},
 ];
 
+/* ─── 국어 강의 순서 (문법 김병태) ──────────────────── */
+const KOREAN_GRAMMAR_ORDER = [
+  {rank:'🥇 1순위',label:'음운 / 표준 발음법',lectures:'13~23번',priority:'제일 먼저 — 시험 함정 1위',bg:'bg-red-50',border:'border-red-200',tag:'bg-red-100 text-red-700',
+   topics:['13 자음 체계','14 훈민정음','15 음운변동','16~23 표준 발음법 전체 (비음화/유음화/경음화/구개음화)'],
+   why:'문제 대부분 여기서 출제. "맞는 것 고르기" 함정 많음'},
+  {rank:'🥇 2순위',label:'형태소 / 단어 형성',lectures:'08~12번',priority:'안정 점수 구간',bg:'bg-orange-50',border:'border-orange-200',tag:'bg-orange-100 text-orange-700',
+   topics:['08 형태소','09 파생접사','10~11 접미사','12 합성어'],
+   why:'안정 점수 구간. 반복 출제'},
+  {rank:'🥈 3순위',label:'품사 / 문장성분',lectures:'01~03번',priority:'기본 개념',bg:'bg-amber-50',border:'border-amber-200',tag:'bg-amber-100 text-amber-700',
+   topics:['01~02 성분과 품사','03 체언'],
+   why:'기본 개념. 가볍게 보고 넘어가기'},
+  {rank:'🥉 4순위',label:'어미',lectures:'04~07번',priority:'시간 부족 시 뒤로',bg:'bg-slate-50',border:'border-slate-200',tag:'bg-slate-100 text-slate-500',
+   topics:['04 종결어미','05 연결어미','06~07 전성어미'],
+   why:'시간 부족하면 뒤로 미뤄도 됨'},
+];
+
+/* ─── 국어 독해 (이유진) 수강 범위 ──────────────────── */
+const KOREAN_READING_ORDER = [
+  {rank:'🥇 무조건 듣기',label:'주제/결론 + 구조독해',lectures:'07~09, 12~15번',priority:'독해 실력 바로 올라가는 구간',bg:'bg-red-50',border:'border-red-200',tag:'bg-red-100 text-red-700',
+   topics:['07~09 주제/결론 파악','12~15 구조 독해'],
+   why:'독해 점수 바로 올라가는 핵심 파트'},
+  {rank:'🥇 무조건 듣기',label:'확인 + 응용 추론',lectures:'16~22, 28~34번',priority:'추론 문제 대응',bg:'bg-orange-50',border:'border-orange-200',tag:'bg-orange-100 text-orange-700',
+   topics:['16~22 확인 추론','28~34 응용 추론'],
+   why:'추론 비중 높아지는 추세. 여기서 점수 갈림'},
+  {rank:'🥈 여유 있으면',label:'논리 / 비판',lectures:'40~46번',priority:'추가 득점',bg:'bg-amber-50',border:'border-amber-200',tag:'bg-amber-100 text-amber-700',
+   topics:['40~46 논리/비판'],
+   why:'시간 있으면 들으면 좋음'},
+  {rank:'❌ 스킵 가능',label:'지문형 문법 / 화법·작문',lectures:'01~06, 38~39번',priority:'시간 부족 시 생략',bg:'bg-slate-50',border:'border-slate-200',tag:'bg-slate-100 text-slate-400',
+   topics:['01~06 지문형 문법','38~39 화법/작문'],
+   why:'시간 대비 효율 낮음. 시간 부족 시 스킵'},
+];
+
 /* ─── 정보보호론 강의 순서 ─────────────────────────── */
 const INFOSEC_ORDER = [
   {rank:'🥇 1순위',label:'암호화',lectures:'05~16번',priority:'핵심 중 핵심 — 무조건 먼저',bg:'bg-red-50',border:'border-red-200',tag:'bg-red-100 text-red-700',
@@ -155,9 +187,9 @@ const STRATEGIES = [
     id:'국어',emoji:'📖',
     grad:'from-emerald-500 to-green-400',shadow:'rgba(5,150,105,0.25)',
     bg:'bg-emerald-50',border:'border-emerald-200',text:'text-emerald-700',
-    importance:'기본 ⭐⭐',desc:'감 유지 과목. 매일 조금씩 하면 됨.',
-    strategy:['문법 틀리면 점수 바로 날아감 → 문법 먼저','독해: 매일 3~5지문 시간 재고 풀기','많이 듣기보다 직접 풀기가 훨씬 중요','인강 30~40% / 문제풀이 60~70%'],
-    exam:['스타트 과목으로 추천','문법 → 바로 풀기, 독해 → 쉬운 지문 먼저','한 지문 3분 이상 쓰면 위험','목표: 시간 부족 방지'],
+    importance:'기본 ⭐⭐',desc:'하루 1시간. 길게 하지 말고 꾸준히 + 문제 중심.',
+    strategy:['문법: 13번 음운/발음부터 시작 (1번부터 X)','독해: 이유진 07~09번 (주제/결론) 먼저','강의 → 바로 문제. 인강만 듣기는 효과 없음','국어 욕심내면 컴일 망함. 하루 60분 고정'],
+    exam:['국어 먼저 풀기 (스타트 과목)','문제 먼저 보고 지문 읽기 (키워드 파악)','선지 제거법 — 맞추는 게 아니라 틀린 거 빼기','3분 이상 한 지문 → 즉시 넘기기'],
     lectureOrder:[
       {rank:'🥇 1순위',name:'문법 (형태론/통사론)',reason:'틀리면 점수 바로 날아감',tag:'고빈도·필수',tagColor:'bg-red-100 text-red-700'},
       {rank:'🥈 2순위',name:'독해 (비문학)',reason:'문제 풀이로 감 유지',tag:'고빈도',tagColor:'bg-amber-100 text-amber-700'},
@@ -228,14 +260,16 @@ export default function Strategy() {
   const [tab, setTab]                 = useState('order');
   const [expandedGroup, setExpandedGroup] = useState(null);
   const sub    = STRATEGIES.find(s => s.id === active);
-  const isComp = active === '컴퓨터일반';
-  const isInfo = active === '정보보호론';
+  const isComp   = active === '컴퓨터일반';
+  const isInfo   = active === '정보보호론';
+  const isKorean = active === '국어';
 
   const TABS = [
-    ...(isComp || isInfo ? [{id:'order',label:'📋 인강 듣는 순서'}] : [{id:'order',label:'📋 인강 순서'}]),
-    ...(isComp ? [{id:'plan',label:'📅 14일 진도표'}] : []),
-    {id:'schedule',label:'⏱️ 하루 시간표'},
-    {id:'kichul',  label:'📚 기출 연결'},
+    {id:'order',   label: isKorean ? '📋 문법 순서' : '📋 인강 듣는 순서'},
+    ...(isKorean  ? [{id:'reading', label:'📖 독해 수강 범위'}] : []),
+    ...(isComp    ? [{id:'plan',    label:'📅 14일 진도표'}] : []),
+    ...(isKorean  ? [{id:'routine', label:'⏱️ 60분 루틴'}] : [{id:'schedule', label:'⏱️ 하루 시간표'}]),
+    ...(isKorean  ? [] : [{id:'kichul', label:'📚 기출 연결'}]),
     {id:'strategy',label:'🎯 학습 전략'},
   ];
 
@@ -290,6 +324,127 @@ export default function Strategy() {
         ))}
       </div>
 
+      {/* ── 국어 독해 수강 범위 ── */}
+      {tab === 'reading' && isKorean && (
+        <div>
+          <div className="card mb-4">
+            <h3 className="font-bold text-slate-800 mb-1">📖 독해 수강 범위 (이유진)</h3>
+            <p className="text-xs text-slate-400 mb-4">전부 듣지 말고 — 핵심 파트만 골라서 빠르게</p>
+            <OrderList items={KOREAN_READING_ORDER} expandedGroup={expandedGroup} setExpandedGroup={setExpandedGroup} />
+          </div>
+          <div className="grid grid-cols-2 gap-3 max-sm:grid-cols-1">
+            <div className="flex gap-3 bg-red-50 border border-red-200 rounded-xl p-4">
+              <span className="text-xl flex-shrink-0">❌</span>
+              <div>
+                <div className="font-bold text-red-700 text-sm">50강 전부 듣기</div>
+                <div className="text-xs text-red-500 mt-0.5">시간 낭비. 핵심 놓침</div>
+              </div>
+            </div>
+            <div className="flex gap-3 bg-emerald-50 border border-emerald-200 rounded-xl p-4">
+              <span className="text-xl flex-shrink-0">✅</span>
+              <div>
+                <div className="font-bold text-emerald-700 text-sm">07~09, 12~15, 16~22, 28~34 핵심만</div>
+                <div className="text-xs text-emerald-600 mt-0.5">군무원이냐 공무원이냐보다 독해력이 중요</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── 국어 60분 루틴 ── */}
+      {tab === 'routine' && isKorean && (
+        <div>
+          <div className="bg-gradient-to-r from-emerald-500 to-green-500 rounded-2xl p-5 mb-5 text-white"
+               style={{boxShadow:'0 4px 16px rgba(5,150,105,0.3)'}}>
+            <div className="font-extrabold text-lg mb-1">⏱️ 하루 60분 국어 루틴</div>
+            <div className="text-emerald-100 text-sm">"국어는 길게 하지 말고, 꾸준히 + 문제 중심으로"</div>
+          </div>
+
+          {/* 60분 3블록 */}
+          <div className="grid grid-cols-3 gap-4 mb-5 max-sm:grid-cols-1">
+            {[
+              {time:'20분',emoji:'📚',label:'① 문법',desc:'김병태 1강 (또는 0.5강)\n핵심 포인트 1~2개만 체크',bg:'bg-violet-50',border:'border-violet-200',tc:'text-violet-700'},
+              {time:'20분',emoji:'📖',label:'② 독해',desc:'이유진 1강 (핵심 파트만)\n"아 이렇게 푸는구나" 이해',bg:'bg-emerald-50',border:'border-emerald-200',tc:'text-emerald-700'},
+              {time:'20분',emoji:'✏️',label:'③ 문제',desc:'독해 지문 3~5개 + 문법 3문제\n시간 재고 풀기 — 제일 중요',bg:'bg-amber-50',border:'border-amber-200',tc:'text-amber-700'},
+            ].map(b => (
+              <div key={b.label} className={`${b.bg} border ${b.border} rounded-2xl p-5`}>
+                <div className={`text-xs font-extrabold ${b.tc} mb-2`}>{b.time}</div>
+                <div className="text-2xl mb-2">{b.emoji}</div>
+                <div className={`font-extrabold text-[15px] ${b.tc} mb-2`}>{b.label}</div>
+                <div className="text-xs text-slate-600 leading-relaxed whitespace-pre-line">{b.desc}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* 60점 구조 */}
+          <div className="card mb-5">
+            <h3 className="font-bold text-slate-800 mb-4">🎯 60~70점 만드는 점수 구조</h3>
+            <div className="grid grid-cols-2 gap-4 mb-4 max-sm:grid-cols-1">
+              <div className="bg-violet-50 border border-violet-200 rounded-xl p-4">
+                <div className="font-bold text-violet-700 mb-2">📚 문법 (20~30점)</div>
+                <div className="text-sm text-slate-600 leading-relaxed">목표: <strong>아는 건 무조건 맞추기</strong><br/>음운/발음 집중 → 틀린 문제만 반복</div>
+              </div>
+              <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4">
+                <div className="font-bold text-emerald-700 mb-2">📖 독해 (40~50점)</div>
+                <div className="text-sm text-slate-600 leading-relaxed">목표: <strong>확실한 것만 맞추기</strong><br/>지문 다 이해 X → 선지 기준으로 판단</div>
+              </div>
+            </div>
+            <div className="bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 text-sm text-amber-700 font-medium">
+              💡 3주 유지하면 60점 안정권 진입. 국어에 시간 더 쓰면 컴일 망함!
+            </div>
+          </div>
+
+          {/* 시험장 스킬 */}
+          <div className="card mb-5">
+            <h3 className="font-bold text-slate-800 mb-4">🔥 시험장 실전 스킬</h3>
+            <div className="grid grid-cols-2 gap-4 max-sm:grid-cols-1">
+              <div>
+                <div className="text-xs font-bold text-emerald-500 uppercase tracking-wider mb-2">독해 핵심 스킬</div>
+                {[
+                  {n:'1',t:'문제 먼저 보기',d:'뭘 찾을지 알고 지문 읽기'},
+                  {n:'2',t:'키워드 잡기',   d:'지문 전체 이해 X → 핵심만'},
+                  {n:'3',t:'선지 제거',     d:'맞추는 시험 X → 틀린 거 빼기'},
+                ].map(s => (
+                  <div key={s.n} className="flex gap-3 mb-2.5">
+                    <div className="w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">{s.n}</div>
+                    <div><div className="font-semibold text-sm text-slate-700">{s.t}</div><div className="text-xs text-slate-500">{s.d}</div></div>
+                  </div>
+                ))}
+              </div>
+              <div>
+                <div className="text-xs font-bold text-violet-500 uppercase tracking-wider mb-2">문법 핵심 스킬</div>
+                {[
+                  {n:'1',t:'100% 확신 없으면 보류',d:'나중에 다시 — 시간 잡아먹으면 손해'},
+                  {n:'2',t:'음운변동 4가지 암기',  d:'교체/탈락/첨가/축약'},
+                  {n:'3',t:'발음법 4가지 암기',    d:'비음화/유음화/경음화/구개음화'},
+                ].map(s => (
+                  <div key={s.n} className="flex gap-3 mb-2.5">
+                    <div className="w-5 h-5 rounded-full bg-violet-500 text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">{s.n}</div>
+                    <div><div className="font-semibold text-sm text-slate-700">{s.t}</div><div className="text-xs text-slate-500">{s.d}</div></div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* 국어 망하는 패턴 */}
+          <div className="card">
+            <h3 className="font-bold text-slate-800 mb-3">❌ 국어 망하는 패턴</h3>
+            {[
+              {bad:'국어에 시간 많이 씀',   result:'컴일 망함'},
+              {bad:'독해 인강만 듣고 문제 안 품', result:'실력 안 오름'},
+              {bad:'문법 완벽하게 하려 함', result:'시간 부족'},
+            ].map((r, i) => (
+              <div key={i} className="flex items-center gap-3 mb-2">
+                <span className="text-red-400 flex-shrink-0">❌</span>
+                <span className="font-medium text-sm text-slate-700 flex-1">{r.bad}</span>
+                <span className="text-xs font-bold text-red-500 bg-red-50 border border-red-200 px-2 py-1 rounded-full flex-shrink-0">→ {r.result}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* ── 인강 듣는 순서 ── */}
       {tab === 'order' && (
         <div>
@@ -299,7 +454,7 @@ export default function Strategy() {
             </h3>
             <p className="text-xs text-slate-400 mb-4">강의 번호 순서 ❌ → 점수 순서 ✅ · 클릭하면 세부 강의 펼쳐짐</p>
             <OrderList
-              items={isComp ? COMP_ORDER : isInfo ? INFOSEC_ORDER : (sub.lectureOrder || []).map((lo, i) => ({
+              items={isComp ? COMP_ORDER : isInfo ? INFOSEC_ORDER : isKorean ? KOREAN_GRAMMAR_ORDER : (sub.lectureOrder || []).map((lo) => ({
                 rank: lo.rank, label: lo.name, lectures:'', priority:'', bg:'bg-slate-50', border:'border-slate-200',
                 tag: lo.tagColor, topics:[], why: lo.reason
               }))}
@@ -318,8 +473,12 @@ export default function Strategy() {
             <div className="flex gap-3 bg-emerald-50 border border-emerald-200 rounded-xl p-4">
               <span className="text-xl flex-shrink-0">✅</span>
               <div>
-                <div className="font-bold text-emerald-700 text-sm">지금 당장 {isComp ? '24' : isInfo ? '05' : '1'}번부터 시작!</div>
-                <div className="text-xs text-emerald-600 mt-0.5">우선순위 순서로 점프하며 듣기</div>
+                <div className="font-bold text-emerald-700 text-sm">
+                  지금 당장 {isComp ? '24' : isInfo ? '05' : isKorean ? '13' : '1'}번부터 시작!
+                </div>
+                <div className="text-xs text-emerald-600 mt-0.5">
+                  {isKorean ? '음운/발음 (13~23) → 형태소 (08~12) 순서로' : '우선순위 순서로 점프하며 듣기'}
+                </div>
               </div>
             </div>
           </div>
