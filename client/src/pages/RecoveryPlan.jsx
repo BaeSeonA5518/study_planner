@@ -1,5 +1,44 @@
 import React, { useState } from 'react';
 
+const TRIGGERS = [
+  {
+    id:'lazy',
+    emoji:'😑',
+    title:'하기 싫을 때 (시작 트리거)',
+    desc:'의지 필요 없이 자동으로 시작하는 방법',
+    bg:'bg-violet-50', border:'border-violet-200', tc:'text-violet-700',
+    steps:[
+      {icon:'▶️', action:'컴일 인강 1강만 켜기', detail:'타이머 20분 설정'},
+      {icon:'⏱️', action:'20분 후 그만해도 됨',  detail:'근데 대부분 계속 하게 됨'},
+    ],
+    result:'20분 → 자동으로 흐름 탄다',
+  },
+  {
+    id:'tired',
+    emoji:'😩',
+    title:'완전 귀찮을 때 (최소 트리거)',
+    desc:'이것만 해도 오늘 성공',
+    bg:'bg-cyan-50', border:'border-cyan-200', tc:'text-cyan-700',
+    steps:[
+      {icon:'💻', action:'컴일 1강',     detail:'1강이면 충분'},
+      {icon:'🔐', action:'정보보호 1강', detail:'이게 전부. 끝'},
+    ],
+    result:'흐름 유지 성공. 내일 이어진다',
+  },
+  {
+    id:'broken',
+    emoji:'💀',
+    title:'아예 무너진 날 (최저선 트리거)',
+    desc:'"0일"만 만들지 않으면 됨',
+    bg:'bg-amber-50', border:'border-amber-200', tc:'text-amber-700',
+    steps:[
+      {icon:'📱', action:'유튜브 말고 인강 10분', detail:'아무 강의나 틀어놓기'},
+      {icon:'📝', action:'또는 기출 1문제',        detail:'정말 1문제만'},
+    ],
+    result:'"0일 금지" 달성. 내일 다시 시작',
+  },
+];
+
 const SITUATIONS = [
   { id:'one_day', icon:'😓', title:'하루 날렸을 때', sub:'어제 하나도 못 했어', tag:'경미',
     bg:'bg-amber-50', border:'border-amber-200', text:'text-amber-700', tagBg:'bg-amber-100',
@@ -36,7 +75,45 @@ export default function RecoveryPlan() {
         <p className="page-subtitle">진도 밀렸을 때, 슬럼프 왔을 때 여기로 와</p>
       </div>
 
-      <p className="section-label">상황 선택</p>
+      {/* 자동 복구 트리거 */}
+      <div className="card mb-6 bg-gradient-to-br from-slate-50 to-violet-50 border-violet-200">
+        <h3 className="font-bold text-slate-800 mb-1">⚡ 공부 안 하기 시작할 때 트리거</h3>
+        <p className="text-xs text-slate-400 mb-4">"의지" 말고 자동 복구 장치 — 상황에 맞게 골라 써</p>
+        <div className="grid grid-cols-3 gap-3 max-sm:grid-cols-1">
+          {TRIGGERS.map(t => (
+            <div key={t.id} className={`${t.bg} border ${t.border} rounded-2xl p-4`}>
+              <div className="text-2xl mb-2">{t.emoji}</div>
+              <div className={`font-bold text-[13.5px] ${t.tc} mb-1`}>{t.title}</div>
+              <div className="text-xs text-slate-500 mb-3">{t.desc}</div>
+              <div className="flex flex-col gap-2 mb-3">
+                {t.steps.map((s, i) => (
+                  <div key={i} className="bg-white rounded-lg px-3 py-2 border border-white/80 shadow-sm">
+                    <div className="text-sm font-semibold text-slate-700">{s.icon} {s.action}</div>
+                    <div className="text-xs text-slate-400 mt-0.5">{s.detail}</div>
+                  </div>
+                ))}
+              </div>
+              <div className={`text-xs font-bold ${t.tc} bg-white/70 rounded-lg px-3 py-2 text-center`}>
+                → {t.result}
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="grid grid-cols-2 gap-3 mt-4 max-sm:grid-cols-1">
+          <div className="bg-red-50 border border-red-200 rounded-xl px-4 py-3">
+            <div className="text-xs font-bold text-red-500 mb-1">❌ 실패 루트</div>
+            <div className="text-sm font-semibold text-red-700">"오늘 많이 해야지"</div>
+            <div className="text-xs text-red-400 mt-0.5">부담 ↑ → 또 안 함 → 연쇄 붕괴</div>
+          </div>
+          <div className="bg-emerald-50 border border-emerald-200 rounded-xl px-4 py-3">
+            <div className="text-xs font-bold text-emerald-500 mb-1">✅ 합격 루트</div>
+            <div className="text-sm font-semibold text-emerald-700">"오늘 끊기지만 말자"</div>
+            <div className="text-xs text-emerald-500 mt-0.5">1강이라도 → 흐름 유지 → 합격</div>
+          </div>
+        </div>
+      </div>
+
+      <p className="section-label">상황별 복구 플랜</p>
       <div className="grid grid-cols-4 gap-3 mb-6 max-lg:grid-cols-2">
         {SITUATIONS.map(s => (
           <button key={s.id} onClick={() => setSelected(selected===s.id?null:s.id)}

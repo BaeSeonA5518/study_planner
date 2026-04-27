@@ -246,6 +246,46 @@ export default function DailyRoutine() {
           "하루 강의 수를 지키는 게 실력보다 중요하다" 🎯
         </div>
       </div>
+
+      {/* 오늘 체크 해석 */}
+      <div className="card mt-4">
+        <h3 className="font-bold text-slate-800 mb-1">📊 오늘 체크 해석 기준</h3>
+        <p className="text-xs text-slate-400 mb-4">"완벽"이 아니라 "유지"가 목표 — 기준 낮게 잡는 게 맞음</p>
+
+        {/* 체크 기준 */}
+        <div className="grid grid-cols-4 gap-2 mb-4 max-sm:grid-cols-2">
+          {[
+            {subject:'💻 컴일',    standard:'1강이라도 ⭕',  bg:'bg-violet-50', border:'border-violet-200', tc:'text-violet-700'},
+            {subject:'🔐 정보보호',standard:'1강이라도 ⭕',  bg:'bg-cyan-50',   border:'border-cyan-200',   tc:'text-cyan-700'},
+            {subject:'📖 국어',    standard:'20분만 해도 ⭕', bg:'bg-emerald-50',border:'border-emerald-200',tc:'text-emerald-700'},
+            {subject:'📝 기출',    standard:'3문제만 ⭕',     bg:'bg-amber-50',  border:'border-amber-200',  tc:'text-amber-700'},
+          ].map(c => (
+            <div key={c.subject} className={`${c.bg} border ${c.border} rounded-xl p-3 text-center`}>
+              <div className="font-bold text-[13px] text-slate-700 mb-1">{c.subject}</div>
+              <div className={`text-xs font-bold ${c.tc}`}>{c.standard}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* 해석 */}
+        <div className="flex flex-col gap-2">
+          {[
+            {count:'⭕ 3개 이상',  status:'정상 진행 🟢', desc:'잘 가고 있어',      bg:'bg-emerald-50',border:'border-emerald-200',tc:'text-emerald-700'},
+            {count:'⭕ 2개',       status:'유지 상태 🟡', desc:'괜찮아. 내일 한 개만 더',bg:'bg-amber-50', border:'border-amber-200', tc:'text-amber-700'},
+            {count:'⭕ 1개 이하',  status:'위험 신호 🔴', desc:'트리거 발동! 복구 플랜 확인', bg:'bg-red-50',   border:'border-red-200',   tc:'text-red-600'},
+          ].map(r => (
+            <div key={r.count} className={`flex items-center gap-4 ${r.bg} border ${r.border} rounded-xl px-4 py-3`}>
+              <div className={`font-extrabold text-sm ${r.tc} min-w-[90px]`}>{r.count}</div>
+              <div className={`font-bold text-sm ${r.tc}`}>{r.status}</div>
+              <div className="text-xs text-slate-500 ml-auto">{r.desc}</div>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-3 bg-violet-600 text-white rounded-xl px-4 py-3 text-center text-sm font-extrabold">
+          "0일(아예 안 한 날)만 만들지 않으면 결국 붙는다" 🔥
+        </div>
+      </div>
     </div>
   );
 }
