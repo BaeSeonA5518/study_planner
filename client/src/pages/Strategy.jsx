@@ -135,6 +135,110 @@ const INFOSEC_ORDER = [
    why:'시험 출제 비중 낮음'},
 ];
 
+/* ─── 정보보호론 일정 (4/28~5/10) ───────────────────── */
+const INFOSEC_SCHEDULE = [
+  {
+    period:'4/28~4/30', tag:'암호 기초 스타트', tagColor:'bg-cyan-100 text-cyan-700',
+    desc:'암호 개념 구조 익히기', perDay:'1~2시간',
+    days:[
+      {
+        date:'4/28 Day1', lectures:'05강, 06강', topic:'암호시스템 / 대칭키 암호',
+        task:'대칭 vs 공개키 기출 3~5문제',
+        points:['암호의 목적 (기밀성/무결성/가용성)','대칭키 vs 공개키 차이 감 잡기'],
+      },
+      {
+        date:'4/29 Day2', lectures:'07강, 08강, 09강', topic:'3DES / AES / 블록암호 운용모드',
+        task:'AES/DES 비교 기출 5문제',
+        points:['AES vs DES 차이','ECB / CBC 정도만 감 잡기'],
+      },
+      {
+        date:'4/30 Day3', lectures:'10강, 11강', topic:'KDC / Diffie-Hellman',
+        task:'키교환/KDC 기출 5문제',
+        points:['키 분배 방식 구조 이해','공개키 교환 개념'],
+      },
+    ],
+    result:'✅ 암호화 흐름 50% 완성!',
+  },
+  {
+    period:'5/1~5/4', tag:'암호화 완성 🔥', tagColor:'bg-orange-100 text-orange-700',
+    desc:'RSA + 해시까지 암호화 100% 완성', perDay:'1~1.5시간',
+    days:[
+      {
+        date:'5/1 Day4', lectures:'12강', topic:'RSA 암호해독',
+        task:'RSA 특징 + "누가 암복호화?" 기출 5문제',
+        points:['공개키/개인키 역할','암호화 vs 복호화 방향 (시험 단골)'],
+      },
+      {
+        date:'5/2 Day5', lectures:'13강', topic:'암호해독 + 중간자 공격',
+        task:'중간자 공격 + RSA 혼합 기출 5~8문제',
+        points:['MITM 공격 흐름','키 탈취 과정'],
+      },
+      {
+        date:'5/3 Day6', lectures:'14강, 15강', topic:'해시함수 / 해시 공격',
+        task:'해시 특징 + SHA vs MD5 기출 5문제',
+        points:['해시 목적: 무결성','단방향 특징 / 충돌·무차별 공격'],
+      },
+      {
+        date:'5/4 Day7', lectures:'16강', topic:'SHA-512 + 단원 문제',
+        task:'암호화 총정리 기출 10문제',
+        points:['SHA 특징 (강화된 해시)','전체 암호 흐름 연결'],
+      },
+    ],
+    result:'🔥 암호화 완성! 대칭키 ✔ 공개키 ✔ RSA ✔ 해시 ✔',
+  },
+  {
+    period:'5/5~5/6', tag:'인증 완성', tagColor:'bg-blue-100 text-blue-700',
+    desc:'인증 + 접근제어 자동반사화', perDay:'3~4시간',
+    days:[
+      {
+        date:'5/5 Day8', lectures:'17강, 18강, 19강', topic:'인증 / 전자서명 / 인증서',
+        task:'"다음 중 인증 방식 아닌 것" 유형 기출 20문제',
+        points:['지식/소유/생체 인증','전자서명 vs 암호화 차이'],
+      },
+      {
+        date:'5/6 Day9', lectures:'21~24강', topic:'사용자인증/생체/커버로스/접근제어',
+        task:'RBAC/커버로스/접근제어 기출 20문제',
+        points:['MAC=강제 / DAC=사용자 / RBAC=역할','커버로스 구조'],
+      },
+    ],
+    result:'✅ 인증 완성! 문제 보면 3초 안에 자동 분류',
+  },
+  {
+    period:'5/7~5/8', tag:'공격 유형 완성', tagColor:'bg-red-100 text-red-700',
+    desc:'공격 유형 패턴 암기 + 자동반사화', perDay:'3~4시간',
+    days:[
+      {
+        date:'5/7 Day10', lectures:'31~36강', topic:'네트워크 공격/스니핑/XSS/스캐닝/악성SW/사회공학',
+        task:'공격 유형 기출 30문제',
+        points:['SQL Injection=DB 조작','XSS=브라우저 공격','DoS=서비스 마비','APT=장기 침투'],
+      },
+      {
+        date:'5/8 Day11', lectures:'46~48강', topic:'SQL공격 / 코드공격 / 취약점',
+        task:'공격 유형 기출 30문제',
+        points:['사회공학=사람 속임','설명 → 이름 매칭 훈련'],
+      },
+    ],
+    result:'✅ 공격 유형 완성! 설명 보면 자동으로 답 나옴',
+  },
+  {
+    period:'5/9~5/10', tag:'혼합 테스트 + 고정화', tagColor:'bg-pink-100 text-pink-700',
+    desc:'실전형 혼합 기출로 완전 고정화', perDay:'3~4시간',
+    days:[
+      {
+        date:'5/9 Day12', lectures:'기출', topic:'인증 + 공격 혼합 테스트',
+        task:'인증+공격 혼합 기출 40문제 / 틀린 이유만 체크',
+        points:['섞여도 구분 가능 상태 목표','틀린 이유만 체크 — 강의 다시 X'],
+      },
+      {
+        date:'5/10 Day13', lectures:'기출', topic:'최종 고정화 (실전)',
+        task:'기출 50문제 시간 재고 / 오답: 인증+공격 헷갈리는 유형만',
+        points:['60~70점 진입 준비 완료 상태'],
+      },
+    ],
+    result:'🎯 60~70점 진입 준비 완료!',
+  },
+];
+
 /* ─── 기출 연결 방식 ────────────────────────────── */
 const KICHUL_LINK = [
   {
@@ -351,6 +455,7 @@ export default function Strategy() {
     ...(isKorean  ? [{id:'reading',  label:'📖 독해 수강 범위'}] : []),
     ...(isKorean  ? [{id:'korplan',  label:'📅 출제코드 일정'}] : []),
     ...(isComp    ? [{id:'plan',     label:'📅 14일 진도표'}] : []),
+    ...(isInfo    ? [{id:'infoplan', label:'📅 4/28~5/10 진도표'}] : []),
     ...(isKorean  ? [{id:'routine',  label:'⏱️ 60분 루틴'}] : [{id:'schedule', label:'⏱️ 하루 시간표'}]),
     ...(isKorean  ? [{id:'template', label:'📝 오답 템플릿'}] : (isComp || isInfo ? [{id:'round2', label:'🔁 기출 2회독'}] : [])),
     ...(isKorean  ? [] : [{id:'kichul', label:'📚 기출 연결'}]),
@@ -788,6 +893,103 @@ export default function Strategy() {
             </div>
             <div className="mt-3 text-center text-[13px] font-bold text-emerald-700 bg-emerald-100 rounded-xl py-2.5">
               "출제코드 = 빠르게 훑고, 점수는 기출에서 만든다" 🎯
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── 정보보호론 진도표 ── */}
+      {tab === 'infoplan' && isInfo && (
+        <div>
+          <div className="grid grid-cols-3 gap-3 mb-5 max-sm:grid-cols-1">
+            {[
+              {date:'4/30까지', goal:'암호화 흐름 50% 완성',         c:'bg-cyan-50 border-cyan-200 text-cyan-700'},
+              {date:'5/4까지',  goal:'암호화 100% 완성 (RSA+해시)', c:'bg-orange-50 border-orange-200 text-orange-700'},
+              {date:'5/10까지', goal:'🔥 60~70점 진입 준비 완료',   c:'bg-pink-50 border-pink-200 text-pink-700'},
+            ].map(g => (
+              <div key={g.date} className={`${g.c} border rounded-xl p-3.5 text-center`}>
+                <div className="text-xs font-bold opacity-70 mb-1">{g.date}</div>
+                <div className="font-extrabold text-[14px]">{g.goal}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex flex-col gap-4 mb-5">
+            {INFOSEC_SCHEDULE.map((block, bi) => (
+              <div key={bi} className="card !p-0 overflow-hidden">
+                <div className="flex items-center gap-3 px-5 py-3.5 bg-slate-50 border-b border-slate-200">
+                  <div>
+                    <div className="font-extrabold text-slate-800 text-[15px]">{block.period}</div>
+                    <div className="text-xs text-slate-500">{block.desc} · 하루 {block.perDay}</div>
+                  </div>
+                  <span className={`ml-auto text-xs font-bold px-2.5 py-1 rounded-full ${block.tagColor}`}>{block.tag}</span>
+                </div>
+                <div className="divide-y divide-slate-100">
+                  {block.days.map((d, di) => (
+                    <div key={di} className="px-5 py-4">
+                      <div className="flex gap-4 items-start mb-2">
+                        <div className="text-xs font-bold text-slate-400 min-w-[90px] flex-shrink-0 mt-0.5">{d.date}</div>
+                        <div className="flex-1">
+                          <div className="font-semibold text-sm text-slate-700">{d.topic}</div>
+                          <div className="text-xs text-cyan-600 font-bold mt-0.5">강의 {d.lectures}</div>
+                        </div>
+                        <div className="text-xs text-pink-600 font-semibold flex-shrink-0 max-w-[150px] text-right">{d.task}</div>
+                      </div>
+                      <div className="pl-[94px] flex flex-wrap gap-1.5">
+                        {d.points.map((p, pi) => (
+                          <span key={pi} className="text-[11px] bg-cyan-50 border border-cyan-200 text-cyan-700 px-2 py-0.5 rounded-full font-medium">
+                            ✓ {p}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="px-5 py-3 bg-gradient-to-r from-cyan-50 to-sky-50 border-t border-cyan-100">
+                  <span className="text-sm font-bold text-cyan-700">{block.result}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* 핵심 전략 */}
+          <div className="grid grid-cols-2 gap-3 mb-4 max-sm:grid-cols-1">
+            <div className="card bg-red-50 border-red-200">
+              <div className="text-xs font-bold text-red-500 mb-2">❌ 이 기간 하지 말 것</div>
+              <div className="flex flex-col gap-1.5">
+                {['해시/인증 넘어가기 (순서대로)','완벽 이해하려 하기','RSA 수학 구조 깊게 파기'].map((r, i) => (
+                  <div key={i} className="flex gap-2 text-sm text-red-700"><span className="flex-shrink-0">→</span>{r}</div>
+                ))}
+              </div>
+            </div>
+            <div className="card bg-emerald-50 border-emerald-200">
+              <div className="text-xs font-bold text-emerald-500 mb-2">✅ 해야 할 것</div>
+              <div className="flex flex-col gap-1.5">
+                {['"아 이런 구조구나" 수준으로','문제 바로 붙이기','패턴 외우기 (이해 X)'].map((r, i) => (
+                  <div key={i} className="flex gap-2 text-sm text-emerald-700"><span className="flex-shrink-0">→</span>{r}</div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* 3회독 시스템 */}
+          <div className="card bg-gradient-to-br from-slate-50 to-cyan-50 border-cyan-200">
+            <h3 className="font-bold text-slate-800 mb-4">🔁 기출 3회독 시스템</h3>
+            <div className="grid grid-cols-3 gap-3 mb-3 max-sm:grid-cols-1">
+              {[
+                {n:'1회독', period:'지금 (이 기간)', desc:'강의 + 기출 같이\n"개념 붙이기"', bg:'bg-slate-50', border:'border-slate-200', tc:'text-slate-600'},
+                {n:'2회독', period:'5/15 이후', desc:'문제만 + 틀린 것만\n"속도 올리기"', bg:'bg-amber-50', border:'border-amber-200', tc:'text-amber-700'},
+                {n:'3회독', period:'시험 직전', desc:'문제 보면 바로 답\n"자동반사화"', bg:'bg-emerald-50', border:'border-emerald-200', tc:'text-emerald-700'},
+              ].map((s, i) => (
+                <div key={i} className={`${s.bg} border ${s.border} rounded-xl p-4 text-center`}>
+                  <div className={`font-extrabold text-[15px] ${s.tc} mb-1`}>{s.n}</div>
+                  <div className="text-[10px] text-slate-400 mb-2">{s.period}</div>
+                  <div className={`text-xs font-semibold ${s.tc} whitespace-pre-line leading-relaxed`}>{s.desc}</div>
+                </div>
+              ))}
+            </div>
+            <div className="bg-cyan-600 text-white rounded-xl px-4 py-3 text-center text-sm font-extrabold">
+              "정보보호는 이해 과목이 아니라 패턴 암기 과목이다" 🎯
             </div>
           </div>
         </div>
