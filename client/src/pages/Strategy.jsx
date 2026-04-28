@@ -165,6 +165,88 @@ const DAILY_SCHEDULE = [
   {time:'자기 전 10~15분',subject:'🧠 암기 고정',task:'정보보호 (암호화/인증) + 한국사 간단 흐름',bg:'bg-pink-50',border:'border-pink-200',tc:'text-pink-700',tip:'기억 고정'},
 ];
 
+/* ─── 하루 시간표 (5/15~5/31 기출 2회독 기준) ───────── */
+const DAILY_SCHEDULE_ROUND2 = [
+  {time:'오전 (1시간 40분)',  subject:'💻 컴퓨터일반 기출', task:'기출 20문제 (40분) → 채점/해설 (40분) → 틀린개념 정리 (20분)', bg:'bg-violet-50', border:'border-violet-200', tc:'text-violet-700', tip:'뇌 최고일 때 최우선'},
+  {time:'오후 (1시간 10분)',  subject:'🔐 정보보호 기출',   task:'기출 15문제 (30분) → 해설 (30분) → 개념 체크 (10분)',         bg:'bg-cyan-50',   border:'border-cyan-200',   tc:'text-cyan-700',   tip:''},
+  {time:'저녁 (40분)',        subject:'📖 국어',             task:'기출 1회분 or 틀린 문제 복습',                                 bg:'bg-emerald-50',border:'border-emerald-200',tc:'text-emerald-700',tip:''},
+  {time:'저녁 (1시간)',       subject:'🏛️ 한국사',           task:'기출 or 흐름 복습',                                           bg:'bg-amber-50',  border:'border-amber-200',  tc:'text-amber-700',  tip:''},
+  {time:'자기 전 (10분)',     subject:'🧠 오답 고정',         task:'틀린 이유 한 줄 정리 → 다음날 시작 전 확인',                  bg:'bg-pink-50',   border:'border-pink-200',   tc:'text-pink-700',   tip:'기억 고정'},
+];
+
+/* ─── 국어 출제코드 일정 (4/28~5/10) ─────────────────── */
+const KOREAN_SCHEDULE = [
+  {
+    period:'4/28~4/30', tag:'문법 압축 스타트', tagColor:'bg-red-100 text-red-700',
+    desc:'출제코드 1~6강 (문법)', perDay:'1시간',
+    days:[
+      {date:'4/28 Day1', lectures:'1강, 2강', topic:'문법 출제코드 1~2강', task:'문제 5문제 (문법)'},
+      {date:'4/29 Day2', lectures:'3강, 4강', topic:'문법 출제코드 3~4강', task:'문제 5문제'},
+      {date:'4/30 Day3', lectures:'5강, 6강', topic:'문법 출제코드 5~6강', task:'문제 5문제'},
+    ],
+    result:'✅ 문법 출제코드 1바퀴 완료!',
+  },
+  {
+    period:'5/1~5/4', tag:'독해+구조', tagColor:'bg-emerald-100 text-emerald-700',
+    desc:'출제코드 7~10강 (독해·구조)', perDay:'1~1.5시간',
+    days:[
+      {date:'5/1 Day4', lectures:'7강',  topic:'독해 출제코드 7강',  task:'지문 3개 풀기'},
+      {date:'5/2 Day5', lectures:'8강',  topic:'독해 출제코드 8강',  task:'지문 3개'},
+      {date:'5/3 Day6', lectures:'9강',  topic:'독해 출제코드 9강',  task:'문학 2지문'},
+      {date:'5/4 Day7', lectures:'10강', topic:'독해 출제코드 10강', task:'혼합 문제 5문제'},
+    ],
+    result:'✅ 출제코드 1~10강 완료!',
+  },
+  {
+    period:'5/5', tag:'핵심 하루 ⚡', tagColor:'bg-violet-100 text-violet-700',
+    desc:'경향 분석 — 방향 확정', perDay:'1시간',
+    days:[
+      {date:'5/5 Day8', lectures:'11강', topic:'경향 분석 (뭐 버리고 뭐 집중할지)', task:'집중파트 / 버릴파트 정리'},
+    ],
+    result:'✅ 방향 확정! 기출 진입 준비 완료',
+  },
+  {
+    period:'5/6~5/10', tag:'기출 진입 🔥', tagColor:'bg-pink-100 text-pink-700',
+    desc:'먼저 문제 풀고 → 강의 순서로!', perDay:'1~2시간',
+    days:[
+      {date:'5/6  Day9',  lectures:'12강', topic:'2023 9급 기출 해설', task:'먼저 문제 풀기 → 강의'},
+      {date:'5/7  Day10', lectures:'13강', topic:'2023 7급 기출 해설', task:'먼저 문제 풀기 → 강의'},
+      {date:'5/8  Day11', lectures:'14강', topic:'2022 9급 기출 해설', task:'먼저 문제 풀기 → 강의'},
+      {date:'5/9  Day12', lectures:'15강', topic:'2022 7급 기출 해설', task:'먼저 문제 풀기 → 강의'},
+      {date:'5/10 Day13', lectures:'16강', topic:'2021 9급 기출 해설', task:'먼저 문제 풀기 → 강의'},
+    ],
+    result:'🔥 최근 3개년 기출 경험 완료! 국어 60점대 진입 가능 상태',
+  },
+];
+
+/* ─── 기출 2회독 루틴 (5/15~5/31) ────────────────────── */
+const KICHUL_ROUND2 = [
+  {
+    subject:'💻 컴퓨터일반', color:'text-violet-700', bg:'bg-violet-50', border:'border-violet-200',
+    totalTime:'1시간 40분/일',
+    steps:[
+      {step:'1단계', time:'40분', task:'기출 20문제 풀기',   tip:'기억으로 X → 처음 보는 것처럼'},
+      {step:'2단계', time:'40분', task:'채점 + 해설 확인',  tip:''},
+      {step:'3단계', time:'20분', task:'틀린 개념 정리',    tip:'틀린 이유 한 줄로 압축'},
+    ],
+    examples:[
+      {wrong:'❌ RR 스케줄링 틀림', right:'✅ 시간할당량 기준 순환 구조 다시 확인'},
+    ],
+  },
+  {
+    subject:'🔐 정보보호론', color:'text-cyan-700', bg:'bg-cyan-50', border:'border-cyan-200',
+    totalTime:'1시간 10분/일',
+    steps:[
+      {step:'1단계', time:'30분', task:'기출 15문제 풀기',   tip:'처음 보는 것처럼'},
+      {step:'2단계', time:'30분', task:'해설 확인',          tip:''},
+      {step:'3단계', time:'10분', task:'틀린 개념 체크',     tip:'공개키/개인키 같은 핵심만'},
+    ],
+    examples:[
+      {wrong:'❌ RSA 틀림', right:'✅ 공개키: 암호화 / 개인키: 복호화'},
+    ],
+  },
+];
+
 /* ─── 과목별 전략 ────────────────────────────────── */
 const STRATEGIES = [
   {
@@ -265,12 +347,14 @@ export default function Strategy() {
   const isKorean = active === '국어';
 
   const TABS = [
-    {id:'order',   label: isKorean ? '📋 문법 순서' : '📋 인강 듣는 순서'},
-    ...(isKorean  ? [{id:'reading', label:'📖 독해 수강 범위'}] : []),
-    ...(isComp    ? [{id:'plan',    label:'📅 14일 진도표'}] : []),
-    ...(isKorean  ? [{id:'routine', label:'⏱️ 60분 루틴'}] : [{id:'schedule', label:'⏱️ 하루 시간표'}]),
+    {id:'order',    label: isKorean ? '📋 문법 순서' : '📋 인강 듣는 순서'},
+    ...(isKorean  ? [{id:'reading',  label:'📖 독해 수강 범위'}] : []),
+    ...(isKorean  ? [{id:'korplan',  label:'📅 출제코드 일정'}] : []),
+    ...(isComp    ? [{id:'plan',     label:'📅 14일 진도표'}] : []),
+    ...(isKorean  ? [{id:'routine',  label:'⏱️ 60분 루틴'}] : [{id:'schedule', label:'⏱️ 하루 시간표'}]),
+    ...(isKorean  ? [{id:'template', label:'📝 오답 템플릿'}] : (isComp || isInfo ? [{id:'round2', label:'🔁 기출 2회독'}] : [])),
     ...(isKorean  ? [] : [{id:'kichul', label:'📚 기출 연결'}]),
-    {id:'strategy',label:'🎯 학습 전략'},
+    {id:'strategy', label:'🎯 학습 전략'},
   ];
 
   return (
@@ -637,6 +721,251 @@ export default function Strategy() {
               <div className="text-violet-800 font-bold text-sm">
                 반복되면 → "문제 보면 자동으로 답 떠오름" 상태 진입 🎯
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── 국어 출제코드 일정 ── */}
+      {tab === 'korplan' && isKorean && (
+        <div>
+          <div className="grid grid-cols-3 gap-3 mb-5 max-sm:grid-cols-1">
+            {[
+              {date:'4/30까지', goal:'문법 출제코드 완료',         c:'bg-red-50 border-red-200 text-red-700'},
+              {date:'5/5까지',  goal:'출제코드 1~10강 + 경향 분석', c:'bg-emerald-50 border-emerald-200 text-emerald-700'},
+              {date:'5/10까지', goal:'🔥 최근 3개년 기출 경험',    c:'bg-pink-50 border-pink-200 text-pink-700'},
+            ].map(g => (
+              <div key={g.date} className={`${g.c} border rounded-xl p-3.5 text-center`}>
+                <div className="text-xs font-bold opacity-70 mb-1">{g.date}</div>
+                <div className="font-extrabold text-[15px]">{g.goal}</div>
+              </div>
+            ))}
+          </div>
+          <div className="flex flex-col gap-4 mb-5">
+            {KOREAN_SCHEDULE.map((block, bi) => (
+              <div key={bi} className="card !p-0 overflow-hidden">
+                <div className="flex items-center gap-3 px-5 py-3.5 bg-slate-50 border-b border-slate-200">
+                  <div>
+                    <div className="font-extrabold text-slate-800 text-[15px]">{block.period}</div>
+                    <div className="text-xs text-slate-500">{block.desc} · 하루 {block.perDay}</div>
+                  </div>
+                  <span className={`ml-auto text-xs font-bold px-2.5 py-1 rounded-full ${block.tagColor}`}>{block.tag}</span>
+                </div>
+                <div className="divide-y divide-slate-100">
+                  {block.days.map((d, di) => (
+                    <div key={di} className="flex gap-4 px-5 py-3.5 items-start">
+                      <div className="text-xs font-bold text-slate-400 min-w-[90px] flex-shrink-0 mt-0.5">{d.date}</div>
+                      <div className="flex-1">
+                        <div className="font-semibold text-sm text-slate-700">{d.topic}</div>
+                        <div className="text-xs text-emerald-600 font-bold mt-0.5">강의 {d.lectures}</div>
+                      </div>
+                      <div className="text-xs text-pink-600 font-semibold flex-shrink-0 max-w-[130px] text-right">{d.task}</div>
+                    </div>
+                  ))}
+                </div>
+                <div className="px-5 py-3 bg-gradient-to-r from-emerald-50 to-green-50 border-t border-emerald-100">
+                  <span className="text-sm font-bold text-emerald-700">{block.result}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="card bg-red-50 border-red-200">
+            <h3 className="font-bold text-slate-800 mb-3">💣 기출 풀 때 절대 규칙 3개</h3>
+            <div className="flex flex-col gap-2">
+              {[
+                {num:'1', rule:'하루 1강이라도 "끊지 않기"', desc:'국어는 감 과목 — 끊기면 바로 실력 떨어짐'},
+                {num:'2', rule:'기출은 "먼저 풀고 강의"',    desc:'반대로 하면 효과 50% 날아감'},
+                {num:'3', rule:'틀린 선지 따로 적기',        desc:'시험 직전에 이거만 보면 됨'},
+              ].map(r => (
+                <div key={r.num} className="flex items-start gap-3 bg-white border border-red-100 rounded-xl px-4 py-3">
+                  <div className="w-6 h-6 rounded-full bg-red-500 flex items-center justify-center text-xs font-extrabold text-white flex-shrink-0 mt-0.5">{r.num}</div>
+                  <div>
+                    <div className="font-bold text-[13.5px] text-red-700">{r.rule}</div>
+                    <div className="text-[12px] text-slate-500 mt-0.5">{r.desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-3 text-center text-[13px] font-bold text-emerald-700 bg-emerald-100 rounded-xl py-2.5">
+              "출제코드 = 빠르게 훑고, 점수는 기출에서 만든다" 🎯
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── 국어 오답 템플릿 ── */}
+      {tab === 'template' && isKorean && (
+        <div>
+          <div className="bg-gradient-to-r from-emerald-500 to-green-500 rounded-2xl p-5 mb-5 text-white"
+               style={{boxShadow:'0 4px 16px rgba(5,150,105,0.3)'}}>
+            <div className="font-extrabold text-lg mb-1">📝 틀린 선지 정리법</div>
+            <div className="text-emerald-100 text-sm">"그냥 틀림 체크 ❌ → 틀린 이유 한 줄 압축 ✅"</div>
+          </div>
+
+          <div className="card mb-5">
+            <h3 className="font-bold text-slate-800 mb-3">📋 정리 템플릿 (그대로 써라)</h3>
+            <div className="bg-slate-900 rounded-xl p-5 font-mono text-sm leading-relaxed">
+              <div className="text-slate-400">[날짜]</div>
+              <div className="text-slate-300">문제번호:</div>
+              <div className="mt-2 text-red-400">❌ 내가 고른 답:</div>
+              <div className="text-emerald-400">⭕ 정답:</div>
+              <div className="mt-2 text-amber-400">📌 틀린 이유:</div>
+              <div className="text-white">👉 (한 줄)</div>
+              <div className="mt-2 text-amber-400">📌 다시 보면 체크할 것:</div>
+              <div className="text-white">👉 (한 줄)</div>
+            </div>
+          </div>
+
+          <div className="card mb-5">
+            <h3 className="font-bold text-slate-800 mb-4">✅ 이렇게 써라 (예시)</h3>
+            <div className="flex flex-col gap-3">
+              {[
+                {wrong:"❌ '되'와 '돼' 구분 틀림", right:"✅ '되어 → 돼' 줄임 가능", note:"되/돼 구분 확인"},
+                {wrong:'❌ 주제 문제 틀림',          right:'✅ 첫 문단 + 끝 문단 연결 확인', note:'주제는 처음+끝'},
+              ].map((ex, i) => (
+                <div key={i} className="bg-emerald-50 border border-emerald-200 rounded-xl p-4">
+                  <div className="text-sm font-semibold text-red-600 mb-1">{ex.wrong}</div>
+                  <div className="text-sm font-semibold text-emerald-700">{ex.right}</div>
+                  <div className="text-xs text-slate-400 mt-1">다시 볼 것: {ex.note}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="card mb-5">
+            <h3 className="font-bold text-slate-800 mb-1">🔁 5/15~5/31 기출 2회독 루틴</h3>
+            <p className="text-xs text-slate-400 mb-4">하루 40분 · 이미 풀었던 거 다시 풀기</p>
+            <div className="grid grid-cols-2 gap-3 mb-3 max-sm:grid-cols-1">
+              {[
+                {step:'1단계 (20분)', task:'기출 1회분 다시 풀기', tip:'기억으로 X, 처음 보듯이', bg:'bg-violet-50', border:'border-violet-200', tc:'text-violet-700'},
+                {step:'2단계 (20분)', task:'채점 + 해설 확인',    tip:'',                       bg:'bg-emerald-50', border:'border-emerald-200', tc:'text-emerald-700'},
+              ].map((s, i) => (
+                <div key={i} className={`${s.bg} border ${s.border} rounded-xl p-4`}>
+                  <div className={`text-xs font-bold ${s.tc} mb-1`}>{s.step}</div>
+                  <div className="font-semibold text-[13.5px] text-slate-700">{s.task}</div>
+                  {s.tip && <div className="text-xs text-slate-400 mt-1">{s.tip}</div>}
+                </div>
+              ))}
+            </div>
+            <div className="bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 text-sm text-amber-700 font-medium">
+              💡 핵심: "다시 풀 때 기억으로 X → 처음 보는 문제처럼 ✅"
+            </div>
+          </div>
+
+          <div className="card bg-gradient-to-br from-slate-50 to-emerald-50 border-emerald-200">
+            <h3 className="font-bold text-slate-800 mb-4">📊 이 루틴 유지하면 점수 변화</h3>
+            <div className="flex flex-col gap-2 mb-3">
+              {[
+                {period:'5월 중순', score:'50~60점', icon:'😤', c:'text-slate-600'},
+                {period:'5월 말',   score:'60~70점', icon:'📈', c:'text-amber-600'},
+                {period:'6월',      score:'70+ 안정', icon:'🔥', c:'text-emerald-700'},
+              ].map((r, i) => (
+                <div key={i} className="flex items-center gap-4 p-3 bg-white border border-slate-200 rounded-xl">
+                  <span className="text-xl">{r.icon}</span>
+                  <span className="text-sm font-bold text-slate-500 min-w-[60px]">{r.period}</span>
+                  <span className={`font-extrabold ${r.c}`}>{r.score}</span>
+                </div>
+              ))}
+            </div>
+            <div className="bg-emerald-600 text-white rounded-xl px-4 py-3 text-center text-sm font-extrabold">
+              "국어는 많이 푸는 게 아니라, 틀린 걸 줄이는 게임이다" 🎯
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── 기출 2회독 루틴 (컴일/정보보호) ── */}
+      {tab === 'round2' && (isComp || isInfo) && (
+        <div>
+          <div className="bg-gradient-to-r from-violet-600 to-indigo-500 rounded-2xl p-5 mb-5 text-white"
+               style={{boxShadow:'0 4px 20px rgba(124,58,237,0.25)'}}>
+            <div className="font-extrabold text-lg mb-1">🔁 5/15~5/31 기출 2회독 시스템</div>
+            <div className="text-violet-200 text-sm">"기출 2회독에서 합격이 결정된다"</div>
+          </div>
+
+          {KICHUL_ROUND2.filter(r => isComp ? r.subject.includes('컴퓨터') : r.subject.includes('정보')).map((subj, si) => (
+            <div key={si} className={`${subj.bg} border ${subj.border} rounded-2xl p-5 mb-4`}>
+              <div className="flex items-center justify-between mb-4">
+                <div className={`font-extrabold text-[16px] ${subj.color}`}>{subj.subject}</div>
+                <span className={`text-xs font-bold px-3 py-1.5 rounded-full bg-white border ${subj.border} ${subj.color}`}>{subj.totalTime}</span>
+              </div>
+              <div className="flex flex-col gap-2.5 mb-4">
+                {subj.steps.map((step, i) => (
+                  <div key={i} className="bg-white rounded-xl px-4 py-3 border border-white/80 shadow-sm flex gap-4 items-center">
+                    <div className={`text-xs font-bold ${subj.color} min-w-[50px]`}>{step.step}</div>
+                    <div className={`text-[11px] font-semibold bg-white border ${subj.border} px-2 py-1 rounded-full ${subj.color} flex-shrink-0`}>{step.time}</div>
+                    <div className="flex-1">
+                      <div className="font-semibold text-sm text-slate-700">{step.task}</div>
+                      {step.tip && <div className="text-xs text-slate-400 mt-0.5">{step.tip}</div>}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className={`${subj.bg} border ${subj.border} rounded-xl p-4`}>
+                <div className="text-xs font-bold text-slate-500 mb-2">📌 틀린 문제 처리 예시</div>
+                {subj.examples.map((ex, ei) => (
+                  <div key={ei} className="flex flex-col gap-1">
+                    <div className="text-sm font-semibold text-red-600">{ex.wrong}</div>
+                    <div className="text-sm font-semibold text-emerald-700">{ex.right}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+
+          <div className="card mb-5">
+            <h3 className="font-bold text-slate-800 mb-1">⏱️ 하루 전체 시간표 (5/15~5/31)</h3>
+            <p className="text-xs text-slate-400 mb-4">총 6시간 · 전 과목 균형 유지</p>
+            <div className="flex flex-col gap-3">
+              {DAILY_SCHEDULE_ROUND2.map((r, i) => (
+                <div key={i} className={`flex gap-4 items-center ${r.bg} border ${r.border} rounded-xl px-5 py-4`}>
+                  <div className="flex-shrink-0 min-w-[120px]">
+                    <div className={`text-xs font-extrabold ${r.tc}`}>{r.time}</div>
+                  </div>
+                  <div className="flex-1">
+                    <div className="font-bold text-[13.5px] text-slate-800">{r.subject}</div>
+                    <div className="text-xs text-slate-500 mt-0.5">{r.task}</div>
+                  </div>
+                  {r.tip && (
+                    <div className="text-[10px] text-slate-400 text-right flex-shrink-0 max-w-[80px] leading-tight">{r.tip}</div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="card mb-5 bg-violet-50 border-violet-200">
+            <h3 className="font-bold text-slate-800 mb-3">🔁 6월: 3회독 (틀린 문제만)</h3>
+            <div className="flex flex-col gap-2">
+              {[
+                {t:'틀린 문제만 모아서 풀기', d:'새 문제 X → 약점만 집중'},
+                {t:'선지 하나하나 완벽 분석', d:'왜 맞고 왜 틀렸는지 명확히'},
+              ].map((item, i) => (
+                <div key={i} className="flex gap-3 bg-white border border-violet-200 rounded-xl px-4 py-3">
+                  <span className="text-violet-500 font-bold flex-shrink-0">→</span>
+                  <div>
+                    <div className="font-semibold text-sm text-slate-700">{item.t}</div>
+                    <div className="text-xs text-slate-400 mt-0.5">{item.d}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="card bg-red-50 border-red-200">
+            <h3 className="font-bold text-slate-800 mb-3">💣 절대 금지 3개</h3>
+            <div className="flex flex-col gap-2">
+              {[
+                {bad:'새로운 문제 계속 추가', result:'깊이 없음 = 점수 안 오름'},
+                {bad:'개념 다시 처음부터',    result:'시간 낭비'},
+                {bad:'강의 계속 들음',        result:'실전 감각 안 생김'},
+              ].map((r, i) => (
+                <div key={i} className="flex items-center gap-3 bg-white border border-red-100 rounded-xl px-4 py-3">
+                  <span className="text-red-400 flex-shrink-0 font-bold">❌</span>
+                  <span className="font-medium text-sm text-slate-700 flex-1">{r.bad}</span>
+                  <span className="text-xs font-bold text-red-500 bg-red-50 border border-red-200 px-2 py-1 rounded-full flex-shrink-0">→ {r.result}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>

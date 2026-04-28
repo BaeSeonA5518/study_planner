@@ -113,6 +113,50 @@ export default function RecoveryPlan() {
         </div>
       </div>
 
+      {/* +1 복구 공식 */}
+      <div className="card mb-6 bg-gradient-to-br from-violet-50 to-indigo-50 border-violet-200">
+        <h3 className="font-bold text-slate-800 mb-1">⚡ 다음날 +1 복구 공식</h3>
+        <p className="text-xs text-slate-400 mb-4">"밀린 걸 없애지 말고, 흡수한다" — 연쇄 붕괴 막는 핵심</p>
+        <div className="grid grid-cols-2 gap-3 mb-4 max-sm:grid-cols-1">
+          <div className="bg-red-50 border border-red-200 rounded-xl p-4">
+            <div className="text-xs font-bold text-red-500 mb-2">❌ 잘못된 반응</div>
+            <div className="font-semibold text-sm text-red-700 mb-1">"망했다 → 내일부터 제대로"</div>
+            <div className="text-xs text-red-400">→ 2~3일 날림 → 연쇄 붕괴</div>
+          </div>
+          <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4">
+            <div className="text-xs font-bold text-emerald-500 mb-2">✅ 정답 행동</div>
+            <div className="font-semibold text-sm text-emerald-700 mb-1">다음날 +1 규칙</div>
+            <div className="text-xs text-emerald-500">→ 원래 분량 + 1 추가만. 끝</div>
+          </div>
+        </div>
+        <div className="bg-white border border-violet-200 rounded-xl p-4 mb-3">
+          <div className="text-xs font-bold text-violet-600 mb-2">📌 복구 공식 예시</div>
+          <div className="flex flex-col gap-2 text-sm">
+            <div className="flex items-center gap-3">
+              <span className="text-slate-400 text-xs min-w-[70px]">원래 계획</span>
+              <span className="font-medium text-slate-600">컴일 3강 / 정보보호 2강</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="text-red-400 text-xs min-w-[70px]">하루 날림</span>
+              <span className="font-medium text-red-600">아무것도 못 함</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="text-emerald-500 text-xs font-bold min-w-[70px]">다음날 →</span>
+              <span className="font-extrabold text-emerald-700">컴일 4강 / 정보보호 3강</span>
+            </div>
+          </div>
+        </div>
+        <div className="bg-amber-50 border border-amber-200 rounded-xl px-4 py-3">
+          <div className="text-xs font-bold text-amber-500 mb-1">💣 최소 루틴 (진짜 바쁜 날)</div>
+          <div className="flex gap-4 flex-wrap text-sm font-semibold text-amber-700">
+            <span>💻 컴일 1강 or 기출 10문제</span>
+            <span>🔐 정보보호 1강 or 5문제</span>
+            <span>📖 국어 10~20분</span>
+          </div>
+          <div className="text-xs text-amber-500 mt-1">이거만 해도 공부 흐름 안 끊김</div>
+        </div>
+      </div>
+
       <p className="section-label">상황별 복구 플랜</p>
       <div className="grid grid-cols-4 gap-3 mb-6 max-lg:grid-cols-2">
         {SITUATIONS.map(s => (
@@ -210,6 +254,27 @@ export default function RecoveryPlan() {
         </div>
         <div className="alert alert-success mt-4 !mb-0">
           이 3개 중 <strong>1개라도 개선</strong>되면 정상 진행 중이야. 자신감 가져!
+        </div>
+      </div>
+
+      {/* 흐름 핵심 */}
+      <div className="card mt-4 bg-gradient-to-br from-amber-50 to-orange-50 border-amber-200">
+        <h3 className="font-bold text-slate-800 mb-3">🔥 멘탈 관리 핵심</h3>
+        <div className="flex flex-col gap-2">
+          {[
+            {icon:'✅', label:'하루 잘함',   result:'영향 거의 없음', c:'text-emerald-700'},
+            {icon:'😮', label:'하루 쉼',     result:'영향 거의 없음', c:'text-amber-600'},
+            {icon:'💀', label:'흐름 끊김',   result:'치명적!',        c:'text-red-600'},
+          ].map((r, i) => (
+            <div key={i} className="flex items-center gap-4 bg-white border border-amber-100 rounded-xl px-4 py-3">
+              <span className="text-xl">{r.icon}</span>
+              <span className="text-sm font-bold text-slate-600 min-w-[70px]">{r.label}</span>
+              <span className={`font-extrabold text-sm ${r.c}`}>{r.result}</span>
+            </div>
+          ))}
+        </div>
+        <div className="mt-3 bg-amber-600 text-white rounded-xl px-4 py-3 text-center font-extrabold text-sm">
+          "완벽한 하루보다, 끊기지 않는 흐름이 합격 만든다" 🔥
         </div>
       </div>
 

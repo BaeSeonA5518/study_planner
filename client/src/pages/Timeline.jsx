@@ -60,21 +60,36 @@ const DANGER_ZONES = [
   {period:'6월 초',emoji:'😤',title:'슬럼프 구간',desc:'"했는데 왜 점수 안 오르지?" → 정상임. 반복해야 올라감',solution:'포기 말고 반복. 6월 중순에 터짐'},
 ];
 
-/* ─── D-7 최종 전략 ─────────────────────────────── */
+/* ─── 시험 2주 전 파이널 루틴 (6/20~7/3) ────────────── */
 const FINAL_WEEK = [
   {
-    period:'D-7 ~ D-4',label:'실전 훈련',tag:'4일간',tagColor:'bg-red-100 text-red-700',
-    tasks:['컴일 기출 1회분 (시간 재고)','정보보호 기출 1회분','국어 1세트 or 독해'],
-    must:'틀린 문제 → 개념 다시 보기 + ⭐ 오답 표시 → 이게 점수 상승 핵심',
+    period:'D-14 ~ D-8 (6/20~6/26)', label:'실전 기출 반복', tag:'1주차', tagColor:'bg-red-100 text-red-700',
+    tasks:[
+      '💻 컴일: 틀린 문제 30문제 + 자주 틀린 유형 10문제 (1.5~2시간)',
+      '🔐 정보보호: 틀린 문제 20문제 + 암기 파트 회독 (1~1.5시간)',
+      '📖 국어: 기출 1회분 or 틀린 문제 (40분)',
+      '주 2회: 전 과목 실전처럼 풀기 (시간 재고 + OMR 느낌)',
+    ],
+    must:'목표 단 하나 — "아는 문제 절대 안 틀리기" · 맞추는 연습 ❌ 안 틀리는 연습 ✅',
   },
   {
-    period:'D-3 ~ D-2',label:'정리 모드',tag:'2일간',tagColor:'bg-amber-100 text-amber-700',
-    tasks:['오답 노트 반복','헷갈리는 개념만 보기'],
+    period:'D-7 ~ D-4 (6/27~6/30)', label:'오답 집중 + 실전 훈련', tag:'2주차 전반', tagColor:'bg-amber-100 text-amber-700',
+    tasks:[
+      '컴일 기출 1회분 (시간 재고)',
+      '정보보호 기출 1회분',
+      '국어 1세트 or 독해',
+      '주 2회: OMR 느낌으로 실전 풀기 → 시간 부족 해결 + 멘탈 안정',
+    ],
+    must:'틀린 문제 → 개념 다시 보기 + ⭐ 오답 표시 → 시험 직전 이것만 본다',
+  },
+  {
+    period:'D-3 ~ D-2 (7/1~7/2)', label:'정리 모드', tag:'2일간', tagColor:'bg-emerald-100 text-emerald-700',
+    tasks:['오답 노트 반복', '헷갈리는 개념만 비교 정리'],
     must:'새로운 문제 ❌ 새로운 강의 ❌ — 기억 꼬이면 점수 하락',
   },
   {
-    period:'D-1',label:'컨디션 관리',tag:'전날',tagColor:'bg-emerald-100 text-emerald-700',
-    tasks:['공부 2~3시간만','오답 가볍게 보기','일찍 자기'],
+    period:'D-1 (7/3)', label:'컨디션 관리', tag:'전날', tagColor:'bg-violet-100 text-violet-700',
+    tasks:['공부 2~3시간만', '오답 가볍게 보기', '일찍 자기'],
     must:'여기서 무리하면 다음날 망함. 컨디션이 점수임',
   },
 ];
@@ -101,7 +116,7 @@ export default function Timeline() {
   const TABS = [
     {id:'timeline', label:'🗺️ 학습 타임라인'},
     {id:'score',    label:'📈 점수 시뮬레이션'},
-    {id:'final',    label:'🎯 D-7 최종 전략'},
+    {id:'final',    label:'🎯 D-14 파이널 루틴'},
     {id:'passer',   label:'🏆 합격자 패턴'},
   ];
 
@@ -356,7 +371,7 @@ export default function Timeline() {
         <div>
           <div className="bg-gradient-to-r from-red-500 to-orange-500 rounded-2xl p-5 mb-6 text-white"
                style={{boxShadow:'0 4px 20px rgba(239,68,68,0.3)'}}>
-            <div className="font-extrabold text-lg mb-1">🎯 시험 직전 일주일 목표</div>
+            <div className="font-extrabold text-lg mb-1">🎯 시험 2주 전 파이널 루틴 (6/20~7/3)</div>
             <div className="text-red-100 text-sm">"새로 배우는 게 아니라, 틀리는 걸 없애는 것"</div>
           </div>
 
@@ -388,13 +403,20 @@ export default function Timeline() {
 
           {/* 금지 행동 */}
           <div className="card mb-5">
-            <h3 className="font-bold text-slate-800 mb-4">🚫 시험 직전 금지 행동</h3>
-            <div className="grid grid-cols-3 gap-3 max-sm:grid-cols-1">
-              {['새로운 강의 듣기','새로운 개념 공부','어려운 문제 풀기'].map((b, i) => (
-                <div key={i} className="bg-red-50 border border-red-200 rounded-xl p-4 text-center">
-                  <div className="text-2xl mb-2">❌</div>
-                  <div className="font-bold text-red-700 text-sm">{b}</div>
-                  <div className="text-xs text-red-400 mt-1">기억 꼬임 = 점수 하락</div>
+            <h3 className="font-bold text-slate-800 mb-4">🚫 파이널 구간 금지 행동</h3>
+            <div className="grid grid-cols-2 gap-3 max-sm:grid-cols-1">
+              {[
+                {bad:'"이거 부족한데?" 하면서 새 강의', why:'100% 점수 떨어짐'},
+                {bad:'어려운 문제만 파기',               why:'시험은 기본 문제가 점수'},
+                {bad:'공부량 갑자기 늘리기',             why:'집중력 터짐'},
+                {bad:'새로운 개념 시작',                 why:'기억 꼬임 = 점수 하락'},
+              ].map((b, i) => (
+                <div key={i} className="bg-red-50 border border-red-200 rounded-xl p-4 flex gap-3 items-start">
+                  <div className="text-xl flex-shrink-0">❌</div>
+                  <div>
+                    <div className="font-bold text-red-700 text-sm">{b.bad}</div>
+                    <div className="text-xs text-red-400 mt-1">→ {b.why}</div>
+                  </div>
                 </div>
               ))}
             </div>
